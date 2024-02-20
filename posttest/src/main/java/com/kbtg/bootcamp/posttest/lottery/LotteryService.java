@@ -14,8 +14,5 @@ public class LotteryService {
     public String createLottery(LotteryRequest lotteryRequest) {
 
         return "lottery";
-
-
-        
     }
 }
