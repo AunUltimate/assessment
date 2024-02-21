@@ -18,8 +18,7 @@ public class LotteryController {
     }
 
     @PostMapping("/admin/lotteries")
-    public String postTicket(@RequestBody LotteryRequest lotteryRequest) {
-
-        return lotteryService.createLottery(lotteryRequest);
+    public LotteryResponseDto postTicket(@RequestBody LotteryRequestDto lotteryRequestDto) throws Exception {
+        return this.lotteryService.createLottery(lotteryRequestDto);
     }
 }
