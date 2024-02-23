@@ -9,7 +9,10 @@ public class LotteryResponseDto {
         this.ticket = ticket;
     }
 
+
+
     public String getTicket() {
         return ticket;
     }
+
 }
