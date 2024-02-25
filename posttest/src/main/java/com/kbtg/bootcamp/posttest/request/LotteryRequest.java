@@ -1,10 +1,9 @@
-package com.kbtg.bootcamp.posttest.lottery;
+package com.kbtg.bootcamp.posttest.request;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Size;
 
-public class LotteryRequestDto {
+public class LotteryRequest {
 
     @NotNull
     @Size(min = 6, max = 6, message = "Ticket must be 6 characters")

@@ -1,12 +1,12 @@
-package com.kbtg.bootcamp.posttest.lottery;
+package com.kbtg.bootcamp.posttest.response;
 
 
-public class LotterysResponseDto {
+public class LotterysResponse {
 
     private String[] tickets;
 
 
-    public LotterysResponseDto(String[] tickets) {
+    public LotterysResponse(String[] tickets) {
         this.tickets = tickets;
     }
 

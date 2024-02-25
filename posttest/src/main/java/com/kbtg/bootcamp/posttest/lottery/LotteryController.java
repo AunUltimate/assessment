@@ -1,5 +1,9 @@
 package com.kbtg.bootcamp.posttest.lottery;
 
+import com.kbtg.bootcamp.posttest.request.LotteryRequest;
+import com.kbtg.bootcamp.posttest.response.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,23 +16,29 @@ public class LotteryController {
         this.lotteryService = lotteryService;
     }
     @GetMapping("/lotteries")
-    public LotterysResponseDto getTicket() {
-
+    public LotterysResponse getTicket() {
         return this.lotteryService.getTicketLotteries();
     }
 
     @PostMapping("/admin/lotteries")
-    public LotteryResponseDto postTicket(@RequestBody LotteryRequestDto lotteryRequestDto) throws Exception {
-        return this.lotteryService.createLottery(lotteryRequestDto);
+    public ResponseEntity postTicket(@RequestBody LotteryRequest lotteryRequest) throws Exception {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(lotteryService.createLottery(lotteryRequest));
     }
 
     @PostMapping("/users/{userId}/lotteries/{ticketId}")
-    public UserTicketResponseDto postUserId(@PathVariable String userId, @PathVariable String ticketId) {
-
-        return this.lotteryService.createUserTicket(userId, ticketId);
+    public ResponseEntity postUserId(@PathVariable String userId, @PathVariable String ticketId) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(lotteryService.createUserTicket(userId, ticketId));
     }
     @DeleteMapping("/users/{userId}/lotteries/{ticketId}")
-    public UserTicketResponseDto deleteUserTicket(@PathVariable String userId, @PathVariable String ticketId) {
+    public DeleteTicketResponse deleteUserTicket(@PathVariable String userId, @PathVariable String ticketId) {
         return lotteryService.deleteUserTicket(userId, ticketId);
+    }
+    @GetMapping("/users/{userId}/lotteries")
+    public UserTicketResponse getAllLotteryTicketsByUser(@PathVariable String userId) {
+        return lotteryService.findByUserId(userId);
     }
 }

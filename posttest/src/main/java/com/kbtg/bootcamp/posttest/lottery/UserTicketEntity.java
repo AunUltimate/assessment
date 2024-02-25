@@ -11,5 +11,12 @@ public class UserTicketEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String userId, ticketId;
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @ManyToOne
+    @JoinColumn(name = "ticket_id")
+    private LotteryEntity ticketId;
+
+
 }
